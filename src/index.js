@@ -31,7 +31,7 @@ async function onFormSubmit(event) {
   const {
     data: { hits: imagesObjArr, totalHits },
   } = await getImages(userQuery);
-
+  loadMoreBtnRef.classList.remove(HIDDEN_CLASS);
   if (imagesObjArr.length === 0) {
     return Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.'
@@ -41,7 +41,6 @@ async function onFormSubmit(event) {
   clearGallery();
   addPictures(imagesObjArr);
   slbInstance.refresh();
-  loadMoreBtnRef.classList.remove(HIDDEN_CLASS);
   smoothScroll();
 }
 
