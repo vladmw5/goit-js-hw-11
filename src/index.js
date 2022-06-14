@@ -31,12 +31,13 @@ async function onFormSubmit(event) {
   const {
     data: { hits: imagesObjArr, totalHits },
   } = await getImages(userQuery);
-  loadMoreBtnRef.classList.remove(HIDDEN_CLASS);
+
   if (imagesObjArr.length === 0) {
     return Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.'
     );
   }
+  loadMoreBtnRef.classList.remove(HIDDEN_CLASS);
   hitsLeft = totalHits - imagesObjArr.length;
   clearGallery();
   addPictures(imagesObjArr);
